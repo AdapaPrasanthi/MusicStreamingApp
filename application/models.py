@@ -15,6 +15,7 @@ class User(db.Model):
     name = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
     active = db.Column(db.Boolean, default=1)
+    creator = db.Column(db.Boolean, default = False)
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False, default=2)
     albums = db.relationship('Album', backref='user', cascade ='all,delete-orphan')
 
