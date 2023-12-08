@@ -15,7 +15,7 @@ class User(db.Model):
     name = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
     active = db.Column(db.Boolean, default=True)
-    role_id = db.Column(db.Integer, db.ForiegnKey('role.id'), nullable=False)
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
     albums = db.relationship('Album', backref='user', cascade ='all,delete-orphan')
 
 class Album(db.Model):
@@ -35,7 +35,7 @@ class Song(db.Model):
     lyrics = db.Column(db.String)
     duration = db.Column(db.Integer)
     date_created = db.Column(db.DateTime, default=datetime.datetime.now)
-    album_id = db.Column(db.Integer, db.ForeignKey('album.id', nullable=False))
+    album_id = db.Column(db.Integer, db.ForeignKey('album.id'), nullable=False)
     
 
 

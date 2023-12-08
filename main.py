@@ -3,7 +3,7 @@ from flask import Flask
 from flask_restful import Resource, Api
 from application.config import LocalDevelopmentConfig
 from application.database import db
-
+from application.models import *
 app = None
 api = None
 
