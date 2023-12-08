@@ -18,6 +18,9 @@ def user_login():
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email, password=password).first()
+        if not user:
+            flash("Incorrect credentials")
+            return redirect(url_for('user_login'))
         if user.role_id != 2:
             flash('You are not an user. Try login correctly.')
             return redirect(url_for('home'))
@@ -33,13 +36,42 @@ def user_home():
 def user_signup():
     if request.method == "GET":
         return render_template('user_signup.html')
+    elif request.method == "POST":
+        email = request.form['email']
+        name = request.form['name']
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        if password != confirm_password:
+            flash('Password not matched')
+            return redirect(url_for('user_signup'))
+        user = User(email=email, name=name, password=password)
+        db.session.add(user)
+        db.session.commit()
+        flash('Signed up successful')
+        return redirect(url_for('user_login'))
     
 
 @app.route("/admin_login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "GET":
         return render_template('admin_login.html')
+    elif request.method == "POST":
+        email = request.form['email']
+        password = request.form['password']
+        user = User.query.filter_by(email=email, password=password).first()
+        if not user:
+            flash("Incorrect credentials")
+            return redirect(url_for('admin_login'))
+        if user.role_id != 1:
+            flash('You are not an admin. Try login correctly.')
+            return redirect(url_for('home'))
+        return redirect(url_for('admin_home'))
     
+@app.route("/admin_home", methods=["GET","POST"])
+def admin_home():
+    if request.method == "GET":
+        return render_template('admin_home.html')
 
 @app.route("/creator", methods=["GET", "POST"])
 def creator():
