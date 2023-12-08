@@ -1,0 +1,5 @@
+Flask==2.0.1
+Flask-SQLAlchemy==2.5.1
+flask_restful
+werkzeug==2.3.7
+sqlalchemy==1.4.0
