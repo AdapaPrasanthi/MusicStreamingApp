@@ -15,11 +15,13 @@ def user_login():
     if request.method == 'GET':
         return render_template("user_login.html")
     elif request.method == 'POST':
-        username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
-        print(username, password)
-        user = User.query.filter_by(name=username, password=password)
-        print(user)
+        user = User.query.filter_by(email=email, password=password).first()
+        if user.role_id != 2:
+            flash('You are not an user. Try login correctly.')
+            return redirect(url_for('home'))
+        return render_template('user_home.html')
 
 
 

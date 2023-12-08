@@ -9,7 +9,6 @@ class Config():
 
 class LocalDevelopmentConfig(Config):
     SQLITE_DB_DIR = os.path.join(basedir, "../sqldatabase")
-    # SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(SQLITE_DB_DIR, "data.sqlite3")
-    SQLALCHEMY_DATABASE_URI = "sqlite:///C:/Users/prasa/Desktop/MusicStreamingApp/sqldatabase/data.sqlite3"
-
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(SQLITE_DB_DIR, "data.sqlite3")
+    # SQLALCHEMY_DATABASE_URI = "sqlite:///C:/Users/prasa/Desktop/MusicStreamingApp/sqldatabase/data.sqlite3"
     DEBUG = True
