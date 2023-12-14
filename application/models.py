@@ -38,6 +38,11 @@ class Song(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.datetime.now)
     album_id = db.Column(db.Integer, db.ForeignKey('album.id'), nullable=False)
     
+"""
+class creator_song(db.Model):
+    
+
+"""
 
 
 
