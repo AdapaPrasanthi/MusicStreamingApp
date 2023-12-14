@@ -6,6 +6,20 @@
     <title>User's Home Page</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        audio {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            background-color: white;
+            padding: 10px;
+            color: #fff;
+            border-top: 2px solid red;
+        }
+        body{
+            padding-bottom: 50px;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,6 +29,7 @@
     <!-- First Row -->
     <div class="row bg-gray">
         <div class="col-md-6">
+            <h1>Hi, {{username}}</h1>
             <h2>Recommended Tracks</h2>
         </div>
         <div class="col-md-6 text-right">
@@ -189,7 +204,10 @@
         </div>
     </div>
 </div>
-
+<audio controls>
+    <source src="your-audio-file.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

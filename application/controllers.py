@@ -1,4 +1,4 @@
-from flask import request, redirect, url_for, flash
+from flask import request, redirect, url_for, flash, session
 from flask import render_template
 from flask import current_app as app
 from application.models import *
@@ -20,6 +20,7 @@ def user_login():
         if user.role_id != 2:
             flash('You are not an user. Try login correctly.')
             return redirect(url_for('home'))
+        session["email"] = email
         return redirect(url_for('user_home'))
     return render_template("access.html",login=True)
 
@@ -57,17 +58,45 @@ def admin_login():
     
 @app.route("/user_home", methods=["GET"])
 def user_home():
-    return render_template('user_home.html')
+    user = User.query.filter_by(email = session['email']).first()
+    if user is not None:
+        return render_template('user_home.html', username = user.name)
+    else:
+        return redirect("/")
     
 @app.route("/admin_home", methods=["GET"])
 def admin_home():
     return render_template('admin_home.html')
 
-@app.route("/creator", methods=["GET"])
+
+@app.route("/creator", methods=["GET", "POST"])
 def creator():
-    return render_template('creator_home.html')
+    if session["email"] is not None:
+        user = User.query.filter_by(email = session['email']).first()
+        if user.creator ==  False:
+            return render_template("creator_home.html")
+        else:
+            return render_template("creator_dashboard2.html", username = user.name)
+    else:
+        return redirect("/")
 
+@app.route("/registerAsCreator", methods=["GET", "POST"])
+def registerAsCreator():
+    if session["email"] is not None:
+        user = User.query.filter_by(email = session['email']).first()
+        user.creator = True
+        db.session.commit()
+        return redirect(url_for("creator"))
+    else:
+        return redirect("/")
 
+@app.route("/logout")
+def logout():
+    if session["email"] is not None:
+        session.pop("email", None)
+        return redirect("/")
+    else:
+        return redirect("/")
 
 
 
