@@ -30,12 +30,12 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label>Total Users</label>
-                <input type="text" class="form-control" value="1000" readonly>
+                <p style = "font-size: x-large; color: green; font-weight: bold;">{{len(users)}}</p>
             </div>
             <div class="form-group">
                 <label>Total Creators</label>
-                <input type="text" class="form-control" value="50" readonly>
-            </div>
+                <p style = "font-size: x-large; color: lightseagreen; font-weight: bold;">{{len(creators)}}</p>
+                </div>
         </div>
 
         <!-- 2nd Part: App Performance -->
@@ -65,7 +65,7 @@
             </div>
             <div class="card mt-4">
                 <div class="card-body">
-                    <h5 class="card-title">Random Bar Chart</h5>
+                    <h5 class="card-title">Genre Distribution</h5>
                     <!-- Placeholder for a simple bar chart -->
                     <canvas id="myChart" width="200" height="200"></canvas>
                 </div>
@@ -86,10 +86,10 @@
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Label 1', 'Label 2', 'Label 3'],
+            labels: ['Pop', 'Rock', 'Jazz'],
             datasets: [{
                 label: 'Sample Data',
-                data: [10, 20, 30],
+                data: [10, 20,50],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

@@ -37,6 +37,7 @@ class Song(db.Model):
     duration = db.Column(db.Integer)
     date_created = db.Column(db.DateTime, default=datetime.datetime.now)
     album_id = db.Column(db.Integer, db.ForeignKey('album.id'), nullable=False)
+    location = db.Column(db.String, nullable=False)
     
 """
 class creator_song(db.Model):

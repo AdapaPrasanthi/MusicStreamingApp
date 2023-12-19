@@ -60,13 +60,16 @@ def admin_login():
 def user_home():
     user = User.query.filter_by(email = session['email']).first()
     if user is not None:
-        return render_template('user_home.html', username = user.name)
+        songs = Song.query.all()
+        return render_template('user_home.html', username = user.name, songs = songs, title=str.title)
     else:
         return redirect("/")
     
 @app.route("/admin_home", methods=["GET"])
 def admin_home():
-    return render_template('admin_home.html')
+    users = User.query.filter_by(creator = 0).all()
+    creators = User.query.filter_by(creator = 1).all()
+    return render_template('admin_home.html', users=users, creators=creators, len=len)
 
 
 @app.route("/creator", methods=["GET", "POST"])
